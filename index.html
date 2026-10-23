@@ -144,14 +144,16 @@ details[open] summary::before{transform:rotate(90deg)}
         <div class="row"><label>現有壽險保額</label><input type="number" id="lifeW" value="100" min="0" step="10"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">萬</span></div>
         <div class="row"><label>工作到幾歲<span class="hint">家管填 65</span></label><input type="number" id="retireW" value="65" min="40" max="80"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">歲</span></div>
       </div>
+      <div class="person">
+        <h3>家庭現有醫療與失能保障</h3>        <div class="row"><label>現有醫療日額</label>
+      <input type="number" id="med" value="1000" min="0" step="500"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">元</span></div>
+        <div class="row"><label>現有實支實付額度</label>
+      <input type="number" id="reimb" value="10" min="0" step="1"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">萬</span></div>
+        <div class="row"><label>現有失能月扶助</label>
+      <input type="number" id="dis" value="0" min="0" step="0.5"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">萬</span></div>
+      </div>
     </div>
 
-    <div class="row"><label>現有醫療日額</label>
-      <input type="number" id="med" value="1000" min="0" step="500"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">元</span></div>
-    <div class="row"><label>現有實支實付額度</label>
-      <input type="number" id="reimb" value="10" min="0" step="1"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">萬</span></div>
-    <div class="row"><label>現有失能月扶助</label>
-      <input type="number" id="dis" value="0" min="0" step="0.5"><span style="font-size:13px;color:#8fa3ac;margin-left:-4px">萬</span></div>
   </div>
 
   <button class="btn" id="calc">開始試算</button>
