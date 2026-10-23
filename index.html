@@ -11,10 +11,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="保障試算">
+<meta name="apple-mobile-web-app-title" content="緣來喝茶">
 <meta name="description" content="保險業務拜訪客戶時，當場試算壽險、醫療、失能缺口。純本機計算，不上傳資料。">
 
-<title>保障缺口試算</title>
+<title>緣來喝茶圓滿人生保險APP</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
@@ -82,6 +82,37 @@ details[open] summary::before{transform:rotate(90deg)}
 .tests b{color:#c0392b}
 .tests .good{color:#1e7a56;font-weight:700}
 .stamp{font-size:11px;color:#a9bcc4;text-align:center;margin-top:18px}
+
+/* ── 列印／PDF ── */
+@media print {
+  @page { size: A4; margin: 14mm 12mm; }
+  body { background: #fff; font-size: 12pt; padding: 0; }
+  header { position: static; background: #fff !important; color: #1f4e5f;
+           box-shadow: none; padding: 0 0 8mm; border-bottom: 2px solid #1f4e5f; }
+  header h1 { font-size: 17pt; }
+  header p { color: #5c7480; opacity: 1; font-size: 9.5pt; }
+  main { padding: 0; max-width: none; }
+  .mode, #calc, #actions, .btn, details summary, .stamp { display: none !important; }
+  .card { box-shadow: none; border: 1px solid #cfdde2; border-radius: 6px;
+          padding: 4mm; margin-bottom: 4mm; page-break-inside: avoid; }
+  .card h2 { font-size: 11.5pt; margin-bottom: 3mm; }
+  .gapbox { color: #fff !important; -webkit-print-color-adjust: exact;
+            print-color-adjust: exact; page-break-inside: avoid; }
+  .gapbox .num { font-size: 22pt; }
+  .totals { page-break-inside: avoid; }
+  .tot b { font-size: 14pt; }
+  table.calc { font-size: 10pt; }
+  table.calc td { padding: 1.6mm 1mm; }
+  .tests { background: #f2f7f9 !important; -webkit-print-color-adjust: exact;
+           print-color-adjust: exact; page-break-inside: avoid; }
+  .warn { background: #fff8e6 !important; -webkit-print-color-adjust: exact;
+          print-color-adjust: exact; page-break-inside: avoid; }
+  /* 列印時把算式全部展開 */
+  details > *:not(summary) { display: block !important; }
+  .person { page-break-inside: avoid; }
+  .disc { font-size: 9pt; color: #5c7480; border-top: 1px solid #cfdde2;
+          padding-top: 3mm; text-align: left; }
+}
 @media(max-width:360px){input[type=number],input[type=text]{width:96px}}
 </style>
 </head>
@@ -167,6 +198,13 @@ details[open] summary::before{transform:rotate(90deg)}
   <button class="btn" id="calc">開始試算</button>
 
   <div id="out" class="hide" style="margin-top:18px"></div>
+
+  <div id="actions" class="hide">
+    <button class="btn ghost" id="print" style="margin-bottom:10px">列印 / 存成 PDF</button>
+    <p style="font-size:11.5px;color:#8fa3ac;text-align:center;margin:0 0 4px">
+      手機請選「列印」→ 再選「儲存為 PDF」
+    </p>
+  </div>
 
   <p class="disc">
     本試算僅供參考，實際保障需求請與您的業務員討論。<br>
@@ -420,7 +458,23 @@ $("calc").onclick = function(){
   var out = $("out");
   out.innerHTML = html;
   out.className = "";
+  $("actions").className = "";
   out.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+function openAllDetails() {
+  Array.prototype.forEach.call(document.querySelectorAll("details"), function (d) {
+    d.setAttribute("open", "");
+  });
+}
+window.addEventListener("beforeprint", openAllDetails);
+
+$("print").onclick = function () {
+  // 列印前把隱藏的算式全部打開
+  Array.prototype.forEach.call(document.querySelectorAll("details"), function (d) {
+    d.setAttribute("open", "");
+  });
+  window.print();
 };
 
 // 預設算一次
