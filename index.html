@@ -18,9 +18,11 @@
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
-  background:#eef2f4;color:#20303a;font-size:16px;line-height:1.6;padding-bottom:40px}
+  background:#eef2f4;color:#20303a;font-size:16px;line-height:1.6;padding-bottom:96px}
 header{background:linear-gradient(135deg,#1f4e5f,#2e7d8f);color:#fff;padding:22px 18px 18px;position:sticky;top:0;z-index:10;
   box-shadow:0 2px 12px rgba(0,0,0,.18)}
+header .brand{font-size:12px;font-weight:600;letter-spacing:1.5px;
+  color:rgba(255,255,255,.82);margin-bottom:4px}
 header h1{margin:0;font-size:19px;font-weight:700;letter-spacing:.5px}
 header p{margin:6px 0 0;font-size:12.5px;opacity:.85}
 main{padding:16px 14px;max-width:560px;margin:0 auto}
@@ -92,7 +94,7 @@ details[open] summary::before{transform:rotate(90deg)}
   header h1 { font-size: 17pt; }
   header p { color: #5c7480; opacity: 1; font-size: 9.5pt; }
   main { padding: 0; max-width: none; }
-  .mode, #calc, #actions, .btn, details summary, .stamp { display: none !important; }
+  .mode, #calc, #actions, .btn, details summary, .stamp, .askbar { display: none !important; }
   .card { box-shadow: none; border: 1px solid #cfdde2; border-radius: 6px;
           padding: 4mm; margin-bottom: 4mm; page-break-inside: avoid; }
   .card h2 { font-size: 11.5pt; margin-bottom: 3mm; }
@@ -114,10 +116,23 @@ details[open] summary::before{transform:rotate(90deg)}
           padding-top: 3mm; text-align: left; }
 }
 @media(max-width:360px){input[type=number],input[type=text]{width:96px}}
+
+/* ── 底部聯絡條（與房仲 APP 同款） ── */
+.askbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.97);border-top:1px solid #e3ecef;
+  box-shadow:0 -2px 14px rgba(15,23,42,.08);backdrop-filter:blur(8px)}
+.askbar .txt{flex:1;min-width:0;font-size:12px;line-height:1.45;color:#8fa3ac}
+.askbar .txt b{display:block;font-size:13px;color:#20303a;margin-bottom:1px}
+.askbar a{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;text-decoration:none;
+  background:#06c755;color:#fff;font-size:13.5px;font-weight:800;padding:10px 16px;border-radius:24px;
+  white-space:nowrap}
+.askbar a:active{opacity:.85}
 </style>
 </head>
 <body>
 <header>
+  <div class="brand">緣來喝茶圓滿人生</div>
   <h1>保障缺口試算</h1>
   <p>家庭責任法 ＋ 雙十原則 ｜ 純本機計算，資料不外傳</p>
 </header>
@@ -211,6 +226,11 @@ details[open] summary::before{transform:rotate(90deg)}
     不構成要保建議，不代表任何保險商品之推介。
   </p>
   <p class="stamp">資料僅在本機運算，不會上傳</p>
+
+<div class="askbar">
+  <div class="txt"><b>有保險問題？</b>直接問我，免費協助</div>
+  <a href="https://line.me/R/ti/p/~Qboywang" target="_blank" rel="noopener">💬 LINE 諮詢</a>
+</div>
 </main>
 
 <script>
