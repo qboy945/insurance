@@ -1,5 +1,5 @@
 /* 保障缺口試算 Service Worker */
-const VERSION = 'v2-2026-10-23-rename';
+const VERSION = 'v3-2026-10-24-uniqid';
 const CACHE = 'gap-calc-' + VERSION;
 
 const ASSETS = [
