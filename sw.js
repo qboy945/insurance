@@ -1,5 +1,5 @@
 /* 保障缺口試算 Service Worker */
-const VERSION = 'v5-2026-10-24-askbar';
+const VERSION = 'v6-2026-10-24-names';
 const CACHE = 'gap-calc-' + VERSION;
 
 const ASSETS = [
